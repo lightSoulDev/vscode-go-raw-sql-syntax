@@ -1,0 +1,58 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "injectionSelector": "L:string.quoted.raw.go",
+  "scopeName": "source.go.raw-sql",
+  "patterns": [
+    {
+      "begin": "(?='i)(^\\s*\\b(SELECT|INSERT|UPDATE|DELETE|CREATE|ALTER|DROP|BEGIN|COMMIT|ROLLBACK|SET|TRUNCATE|--sql)\\b)|(\\b(SELECT|INSERT|UPDATE|DELETE|CREATE|ALTER|DROP|BEGIN|COMMIT|ROLLBACK|SET|TRUNCATE|--sql)\\b)",
+      "end": "(?=`)",
+      "captures": {
+        "0": {
+          "name": "keyword.other.sql"
+        },
+        "1": {
+          "name": "keyword.other.sql"
+        }
+      },
+      "patterns": [
+        {
+          "include": "source.sql"
+        },
+        {
+          "match": "(?i)(\\s* *\\b(LATERAL|TRUE|FALSE|RETURNING)\\b)",
+          "captures": {
+            "1": {
+              "name": "keyword.other.sql"
+            }
+          }
+        },
+        {
+          "match": "(?i)(\\s* *,\\s*)",
+          "captures": {
+            "1": {
+              "name": "keyword.other.sql"
+            }
+          }
+        },
+        {
+          "match": "(?i)(\\s* *[\\(|\\)]\\s*)",
+          "captures": {
+            "1": {
+              "name": "support.function.security.sql"
+            }
+          }
+        },
+        {
+          "begin": "(?i)(;)",
+          "end": "(?=`)",
+          "captures": {
+            "1": {
+              "name": "keyword.other.sql"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
+  
