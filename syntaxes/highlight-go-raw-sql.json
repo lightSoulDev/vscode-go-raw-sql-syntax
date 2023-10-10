@@ -4,7 +4,7 @@
   "scopeName": "source.go.raw-sql",
   "patterns": [
     {
-      "begin": "(?='i)(^\\s*\\b(SELECT|INSERT|UPDATE|DELETE|CREATE|ALTER|DROP|BEGIN|COMMIT|ROLLBACK|SET|TRUNCATE|--sql)\\b)|(\\b(SELECT|INSERT|UPDATE|DELETE|CREATE|ALTER|DROP|BEGIN|COMMIT|ROLLBACK|SET|TRUNCATE|--sql)\\b)",
+      "begin": "(?='i)(^\\s*\\b(SELECT|INSERT|UPDATE|DELETE|CREATE|ALTER|DROP|BEGIN|COMMIT|ROLLBACK|SET|TRUNCATE|WITH|--sql)\\b)|(\\b(SELECT|INSERT|UPDATE|DELETE|CREATE|ALTER|DROP|BEGIN|COMMIT|ROLLBACK|SET|TRUNCATE|WITH|--sql)\\b)",
       "end": "(?=`)",
       "captures": {
         "0": {
