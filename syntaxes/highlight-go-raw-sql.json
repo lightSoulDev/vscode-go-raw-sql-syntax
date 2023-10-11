@@ -4,12 +4,17 @@
   "scopeName": "source.go.raw-sql",
   "patterns": [
     {
-      "begin": "(?='i)(^\\s*\\b(SELECT|INSERT|UPDATE|DELETE|CREATE|ALTER|DROP|BEGIN|COMMIT|ROLLBACK|SET|TRUNCATE|WITH|--sql)\\b)|(\\b(SELECT|INSERT|UPDATE|DELETE|CREATE|ALTER|DROP|BEGIN|COMMIT|ROLLBACK|SET|TRUNCATE|WITH|--sql)\\b)",
-      "end": "(?=`)",
+      "begin": "(?='i)(^\\s*\\b(SELECT|INSERT|UPDATE|DELETE|CREATE|ALTER|DROP|BEGIN|COMMIT|ROLLBACK|SET|TRUNCATE|WITH)\\b)|(\\b(SELECT|INSERT|UPDATE|DELETE|CREATE|ALTER|DROP|BEGIN|COMMIT|ROLLBACK|SET|TRUNCATE|WITH)\\b)|(^\\s*(-- *sql|-- *SQL))",
+      "end": "(?=(;)|`)",
       "captures": {
         "0": {
           "name": "keyword.other.sql"
         },
+        "1": {
+          "name": "keyword.other.sql"
+        }
+      },
+      "endCaptures": {
         "1": {
           "name": "keyword.other.sql"
         }
@@ -19,7 +24,7 @@
           "include": "source.sql"
         },
         {
-          "match": "(?i)(\\s* *\\b(LATERAL|TRUE|FALSE|RETURNING)\\b)",
+          "match": "(?i)(\\s*\\b(LATERAL|TRUE|FALSE|RETURNING)\\b)",
           "captures": {
             "1": {
               "name": "keyword.other.sql"
@@ -27,7 +32,7 @@
           }
         },
         {
-          "match": "(?i)(\\s* *,\\s*)",
+          "match": "(?i)(\\s*,\\s*)",
           "captures": {
             "1": {
               "name": "keyword.other.sql"
@@ -35,19 +40,10 @@
           }
         },
         {
-          "match": "(?i)(\\s* *[\\(|\\)]\\s*)",
+          "match": "(?i)(\\s*[\\(|\\)]\\s*)",
           "captures": {
             "1": {
               "name": "support.function.security.sql"
-            }
-          }
-        },
-        {
-          "begin": "(?i)(;)",
-          "end": "(?=`)",
-          "captures": {
-            "1": {
-              "name": "keyword.other.sql"
             }
           }
         }
